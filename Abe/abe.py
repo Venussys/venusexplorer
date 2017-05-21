@@ -536,6 +536,7 @@ class Abe:
 
         try:
             b = abe.store.export_block(chain, **kwargs)
+            print "export_block:" + str(b)
         except DataStore.MalformedHash:
             body += ['<p class="error">Not in correct format.</p>']
             return
