@@ -18,6 +18,7 @@ from .. import deserialize, BCDataStream, util
 from ..deserialize import opcodes
 
 def create(policy, **kwargs):
+    print "Chain" + str(policy)
     mod = __import__(__name__ + '.' + policy, fromlist=[policy])
     cls = getattr(mod, policy)
     return cls(policy=policy, **kwargs)

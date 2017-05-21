@@ -85,6 +85,7 @@ CHAIN_CONFIG = [
     {"chain":"Maxcoin"},
     {"chain":"Dash"},
     {"chain":"BlackCoin"},
+    {"chain":"Venus"},
     {"chain":"Unbreakablecoin"},
     #{"chain":"",
     # "code3":"", "address_version":"\x", "magic":""},
@@ -358,7 +359,7 @@ class DataStore(object):
                 "chain_id": None if chain_id is None else int(chain_id),
                 "loader": None}
 
-        #print("datadirs: %r" % datadirs)
+        print("datadirs: %r" % datadirs)
 
         # By default, scan every dir we know.  This doesn't happen in
         # practise, because abe.py sets ~/.bitcoin as default datadir.
@@ -385,6 +386,7 @@ class DataStore(object):
                         'Missing dirname in datadir configuration: '
                         + str(dircfg))
                 if dirname in datadirs:
+                    print "dirname:" + str(dirname)
                     d = datadirs[dirname]
                     d['loader'] = dircfg.get('loader')
                     d['conf'] = dircfg.get('conf')
@@ -856,6 +858,7 @@ store._ddl['txout_approx'],
                 policy = conf['name']
 
             chain = Chain.create(policy, **conf)
+            print "insert chain"
             store.insert_chain(chain)
 
         store.sql("""
